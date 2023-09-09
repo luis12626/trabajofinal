@@ -22,82 +22,101 @@ Algoritmo CarritoCompras
         Escribir "5. Modo administrador"
         Escribir "6. Salir"
         Leer opcion
-		egun opcion Hacer
-	Caso 1:
-		Si numUsuarios < 50 Entonces
-			numUsuarios <- numUsuarios + 1
-			
-			Escribir "Ingrese el nombre del Usuario:"
-			Leer Usuario[numUsuarios]
-			
-			Escribir "Ingrese la contraseña:"
-			Leer Contraseña[numUsuarios]
-			
-			Escribir "Usuario agregado exitosamente."
-		Sino
-			Escribir "La lista de usuarios está llena. No se pueden agregar más usuarios."
-		Fin Si
-	Caso 2:
-		Si numProductos < 50 Entonces
-			numProductos <- numProductos + 1
-			
-			Escribir "Ingrese el nombre del producto:"
-			Leer Producto[numProductos]
-			
-			Escribir "Ingrese el precio del producto:"
-			Leer Precio[numProductos]
-			
-			Escribir "Producto agregado exitosamente."
-		Sino
-			Escribir "La lista de productos está llena. No se pueden agregar más productos."
-		Fin Si
-	Caso 3:
-		Si numUsuarios > 0 Y numProductos > 0 Entonces
-			Escribir "Usuarios disponibles:"
-			Para i <- 1 Hasta numUsuarios
-				Escribir "Usuario N°", i, ":", Usuario[i]
-			Fin Para
-			Escribir "Ingrese el número de usuario que desea realizar la compra:"
-			Leer numUsuarioCompra
-			Si numUsuarioCompra >= 1 Y numUsuarioCompra <= numUsuarios Entonces
-				Escribir "Productos disponibles:"
-				Para i <- 1 Hasta numProductos
-					Escribir "Producto N°", i, ":", Producto[i]
-				Fin Para
-				Escribir "Ingrese el número de producto que desea comprar:"
-				Leer numProductoCompra
-				Si numProductoCompra >= 1 Y numProductoCompra <= numProductos Entonces
-					TotalCompra[numCompras + 1] <- 0  // Inicializar el total de la compra en cero
-					Para i <- 1 Hasta numProductoCompra
-						Escribir "Ingrese cuántos de ", Producto[i], " desea comprar:"
-						Leer cantidadProductos
-						Si cantidadProductos >= 1 Entonces
-							numCompras <- numCompras + 1
-							Compras[numCompras] <- "Usuario: " + Usuario[numUsuarioCompra] + ", Producto: " + Producto[i] + ", Precio: " + Precio[i]
-							TotalCompra[numCompras] <- TotalCompra[numCompras] + (ConvertirANumero(Precio[i]) * cantidadProductos) // Acumular el total de la compra
-							Escribir "Compra de ", Producto[i], " realizada exitosamente."
+		
+        Segun opcion Hacer
+            Caso 1:
+                Si numUsuarios < 50 Entonces
+                    numUsuarios <- numUsuarios + 1
+					
+                    Escribir "Ingrese el nombre del Usuario:"
+                    Leer Usuario[numUsuarios]
+					
+                    Escribir "Ingrese la contraseña:"
+                    Leer Contraseña[numUsuarios]
+					
+                    Escribir "Usuario agregado exitosamente."
+                Sino
+                    Escribir "La lista de usuarios está llena. No se pueden agregar más usuarios."
+                Fin Si
+            Caso 2:
+                Si numProductos < 50 Entonces
+                    numProductos <- numProductos + 1
+					
+                    Escribir "Ingrese el nombre del producto:"
+                    Leer Producto[numProductos]
+					
+                    Escribir "Ingrese el precio del producto:"
+                    Leer Precio[numProductos]
+					
+                    Escribir "Producto agregado exitosamente."
+                Sino
+                    Escribir "La lista de productos está llena. No se pueden agregar más productos."
+                Fin Si
+			Caso 3:
+				Si numUsuarios > 0 Y numProductos > 0 Entonces
+					Escribir "Usuarios disponibles:"
+					Para i <- 1 Hasta numUsuarios
+						Escribir "Usuario N°", i, ":", Usuario[i]
+					Fin Para
+					Escribir "Ingrese el número de usuario que desea realizar la compra:"
+					Leer numUsuarioCompra
+					Si numUsuarioCompra >= 1 Y numUsuarioCompra <= numUsuarios Entonces
+						Escribir "Productos disponibles:"
+						Para i <- 1 Hasta numProductos
+							Escribir "Producto N°", i, ":", Producto[i]
+						Fin Para
+						Escribir "Ingrese el número de producto que desea comprar:"
+						Leer numProductoCompra
+						Si numProductoCompra >= 1 Y numProductoCompra <= numProductos Entonces
+							TotalCompra[numCompras + 1] <- 0  // Inicializar el total de la compra en cero
+							Para i <- 1 Hasta numProductoCompra
+								Escribir "Ingrese cuántos de ", Producto[i], " desea comprar:"
+								Leer cantidadProductos
+								Si cantidadProductos >= 1 Entonces
+									numCompras <- numCompras + 1
+									Compras[numCompras] <- "Usuario: " + Usuario[numUsuarioCompra] + ", Producto: " + Producto[i] + ", Precio: " + Precio[i]
+									TotalCompra[numCompras] <- TotalCompra[numCompras] + (ConvertirANumero(Precio[i]) * cantidadProductos) // Acumular el total de la compra
+									Escribir "Compra de ", Producto[i], " realizada exitosamente."
+								Sino
+									Escribir "Cantidad de producto inválida."
+								Fin Si
+							Fin Para
 						Sino
-							Escribir "Cantidad de producto inválida."
+							Escribir "Número de producto inválido."
 						Fin Si
+					Sino
+						Escribir "Número de usuario inválido."
+					Fin Si
+				Sino
+					Escribir "No hay usuarios o productos registrados. No se puede realizar la compra."
+				Fin Si		
+			Caso 4:
+				Si numCompras > 0 Entonces
+					Escribir "Lista de compras realizadas:"
+					Para i <- 1 Hasta numCompras
+						Escribir "Compra N°", i, ":", Compras[i]
+						Escribir "Total: ", TotalCompra[i]  // Muestra el total de la compra aquí
 					Fin Para
 				Sino
-					Escribir "Número de producto inválido."
+					Escribir "No hay compras realizadas."
 				Fin Si
-			Sino
-				Escribir "Número de usuario inválido."
-			Fin Si
-		Sino
-			Escribir "No hay usuarios o productos registrados. No se puede realizar la compra."
-		Fin Si		
-	Caso 4:
-		Si numCompras > 0 Entonces
-			Escribir "Lista de compras realizadas:"
-			Para i <- 1 Hasta numCompras
-				Escribir "Compra N°", i, ":", Compras[i]
-				Escribir "Total: ", TotalCompra[i]  // Muestra el total de la compra aquí
-			Fin Para
-		Sino
-			Escribir "No hay compras realizadas."
-		Fin Si
-
+            Caso 5:
+                Si numUsuarios > 0 Entonces
+                    Escribir "Ingresa la contraseña de administrador:"
+                    Leer contraseñaAdmin
+                    Si contraseñaAdmin = Contraseña[numUsuarios] Entonces
+                        modoAdministrador <- Verdadero
+                        Escribir "Modo administrador activado."
+                    Sino
+                        Escribir "Contraseña incorrecta. Modo administrador no activado."
+                    Fin Si
+                Sino
+                    Escribir "No hay usuarios registrados. No se puede activar el modo administrador."
+                Fin Si
+            Caso 6:
+                Escribir "Saliendo del carrito de compras."
+            De Otro Modo:
+                Escribir "Opción no válida."
+        Fin Segun
+    Hasta Que opcion = 6
 FinAlgoritmo
