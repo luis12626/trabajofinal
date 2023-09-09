@@ -51,5 +51,43 @@ Algoritmo CarritoCompras
 		Sino
 			Escribir "La lista de productos está llena. No se pueden agregar más productos."
 		Fin Si
+	Caso 3:
+		Si numUsuarios > 0 Y numProductos > 0 Entonces
+			Escribir "Usuarios disponibles:"
+			Para i <- 1 Hasta numUsuarios
+				Escribir "Usuario N°", i, ":", Usuario[i]
+			Fin Para
+			Escribir "Ingrese el número de usuario que desea realizar la compra:"
+			Leer numUsuarioCompra
+			Si numUsuarioCompra >= 1 Y numUsuarioCompra <= numUsuarios Entonces
+				Escribir "Productos disponibles:"
+				Para i <- 1 Hasta numProductos
+					Escribir "Producto N°", i, ":", Producto[i]
+				Fin Para
+				Escribir "Ingrese el número de producto que desea comprar:"
+				Leer numProductoCompra
+				Si numProductoCompra >= 1 Y numProductoCompra <= numProductos Entonces
+					TotalCompra[numCompras + 1] <- 0  // Inicializar el total de la compra en cero
+					Para i <- 1 Hasta numProductoCompra
+						Escribir "Ingrese cuántos de ", Producto[i], " desea comprar:"
+						Leer cantidadProductos
+						Si cantidadProductos >= 1 Entonces
+							numCompras <- numCompras + 1
+							Compras[numCompras] <- "Usuario: " + Usuario[numUsuarioCompra] + ", Producto: " + Producto[i] + ", Precio: " + Precio[i]
+							TotalCompra[numCompras] <- TotalCompra[numCompras] + (ConvertirANumero(Precio[i]) * cantidadProductos) // Acumular el total de la compra
+							Escribir "Compra de ", Producto[i], " realizada exitosamente."
+						Sino
+							Escribir "Cantidad de producto inválida."
+						Fin Si
+					Fin Para
+				Sino
+					Escribir "Número de producto inválido."
+				Fin Si
+			Sino
+				Escribir "Número de usuario inválido."
+			Fin Si
+		Sino
+			Escribir "No hay usuarios o productos registrados. No se puede realizar la compra."
+		Fin Si		
 
 FinAlgoritmo
