@@ -89,5 +89,15 @@ Algoritmo CarritoCompras
 		Sino
 			Escribir "No hay usuarios o productos registrados. No se puede realizar la compra."
 		Fin Si		
+	Caso 4:
+		Si numCompras > 0 Entonces
+			Escribir "Lista de compras realizadas:"
+			Para i <- 1 Hasta numCompras
+				Escribir "Compra N°", i, ":", Compras[i]
+				Escribir "Total: ", TotalCompra[i]  // Muestra el total de la compra aquí
+			Fin Para
+		Sino
+			Escribir "No hay compras realizadas."
+		Fin Si
 
 FinAlgoritmo
