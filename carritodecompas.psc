@@ -37,5 +37,19 @@ Algoritmo CarritoCompras
 		Sino
 			Escribir "La lista de usuarios está llena. No se pueden agregar más usuarios."
 		Fin Si
+	Caso 2:
+		Si numProductos < 50 Entonces
+			numProductos <- numProductos + 1
+			
+			Escribir "Ingrese el nombre del producto:"
+			Leer Producto[numProductos]
+			
+			Escribir "Ingrese el precio del producto:"
+			Leer Precio[numProductos]
+			
+			Escribir "Producto agregado exitosamente."
+		Sino
+			Escribir "La lista de productos está llena. No se pueden agregar más productos."
+		Fin Si
 
 FinAlgoritmo
